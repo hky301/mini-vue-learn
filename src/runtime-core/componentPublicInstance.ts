@@ -2,7 +2,8 @@ import { hasOwn } from "../shared/index"
 
 // TODO:可以按照文档实现其他 https://vuejs.org/api/component-instance.html
 const publicPropertiesMap = {
-  $el: (i) => i.vnode.el
+  $el: (i) => i.vnode.el,
+  $slots: (i) => i.slots,
 }
 
 
