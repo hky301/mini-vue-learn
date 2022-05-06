@@ -1,8 +1,13 @@
 import { ShapeFlags } from "../shared/ShapeFlags"
 
+export const Fragment = Symbol('Fragment')
+export const Text = Symbol('Text')
+
 export function createVNode(type, props?, children?) {
   const vnode = {
-    type, props, children,
+    type,
+    props,
+    children,
     shapeFlag: getShapeFlag(type),
     el: null
   }
@@ -20,6 +25,10 @@ export function createVNode(type, props?, children?) {
   }
 
   return vnode
+}
+
+export function createTextVNode(text) {
+  return createVNode(Text, {}, text)
 }
 
 
