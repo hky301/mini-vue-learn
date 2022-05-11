@@ -4,6 +4,7 @@ import { EMPTY_OBJ, isObject } from './../shared/index';
 import { createComponentInstance, setupComponent } from "./component";
 import { shouldUpdateComponent } from './componentUpdateUtils';
 import { createAppAPI } from './createApp';
+import { queueJobs } from './scheduler';
 import { Fragment, Text } from './vnode';
 
 
@@ -328,7 +329,6 @@ export function createRenderer(options) {
         initinalVNode.el = subTree.el
         instance.isMounted = true
       } else {
-
         const { next, vnode } = instance
         if (next) {
           next.el = vnode.el
@@ -343,6 +343,11 @@ export function createRenderer(options) {
 
         patch(prevSubTree, subTree, container, instance, anchor)
 
+      }
+    }, {
+      scheduler() {
+        console.log('scheduler')
+        queueJobs(instance.update)
       }
     })
 
