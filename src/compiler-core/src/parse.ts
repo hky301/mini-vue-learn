@@ -52,10 +52,6 @@ function isEnd(context: any, ancestors) {
     }
   }
 
-  // if (parentTag && s.startsWith(`</${parentTag}>`)) {
-  //   return true
-  // }
-
   return !s
 }
 
